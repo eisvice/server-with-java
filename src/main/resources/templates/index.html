@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>My main page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <link rel="stylesheet" type="text/css" media="all"  -->
+          <!-- href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" /> -->
+  </head>
+
+  <body>
+  
+    <p th:text="|Hello and ${message}|"></p>
+  
+    <form action="#" th:action="@{/comments}" th:object="${commentForm}" method="post">
+        <label for="comment-id">Add your comment</label>
+        <input id="comment-id" name="commentText" th:field="*{comment}" placeholder="Enter new comment" type="text"/>
+        <input type="submit" value="submit"/>
+    </form>
+
+    <div>
+        <h2>Comments:</h2>
+        <div th:if="${#lists.size(comments)} == 0">
+            <p>No comments... yet</p>
+        </div>
+        <div th:each="comment: ${comments}">
+            <p th:text="${comment}"></p>
+        </div>
+    </div>
+  </body>
+
+</html>
