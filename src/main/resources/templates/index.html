@@ -24,7 +24,7 @@
         <div th:if="${#lists.size(comments)} == 0">
             <p>No comments... yet</p>
         </div>
-        <div th:each="comment: ${comments}">
+        <div th:each="comment: ${comments.getComments}">
             <p th:text="${comment}"></p>
         </div>
     </div>

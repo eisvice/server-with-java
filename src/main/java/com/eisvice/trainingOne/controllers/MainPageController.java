@@ -7,28 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-// Java std imports
-import java.util.ArrayList;
-
-// Internals imports
+// Internal imports
+import com.eisvice.trainingOne.dto.CommentDTO;
 import com.eisvice.trainingOne.entities.Comment;
 
 @Controller
 public class MainPageController {
-    private ArrayList<Comment> comments;
+    private final CommentDTO comments;
 
-    public MainPageController() {
-        this.comments = new ArrayList<>();
-        initComments();
+    public MainPageController(CommentDTO comments) {
+        this.comments = comments;
+        comments.initComments();
     }
 
-    private void initComments() {
-        comments.add(new Comment("Новый комментик"));
-        comments.add(new Comment("Hello there"));
-        comments.add(new Comment("What's the time?"));
-        comments.add(new Comment("BLABVLA"));
-    }
-    
     @GetMapping("/")
     public String mainVew(Model model) {
         model.addAttribute("message", "Welcome");
