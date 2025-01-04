@@ -1,0 +1,41 @@
+html,
+body {
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+h2.hello-header {
+    color: blue;
+}
+
+#table-div {
+    width: 50%;
+}
+
+#table-div table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table-div table,
+th,
+td {
+    border: 1px solid black;
+}
+
+#table-div table td {
+    padding-left: 1%;
+}
+
+#game-div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    /* height: 100%; */
+}
+
+#moving-symbol {
+    margin: 0;
+}

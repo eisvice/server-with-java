@@ -23,7 +23,7 @@ public class MainPageController {
     @GetMapping("/")
     public String mainVew(Model model) {
         model.addAttribute("message", "Welcome");
-        model.addAttribute("comments", comments);
+        model.addAttribute("comments", comments.getCommentTable());
         model.addAttribute("commentForm", new Comment());
         return "index";
     }

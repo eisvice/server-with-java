@@ -31,7 +31,16 @@ public class Comment {
         this.comment = comment;
     }
 
+    public LocalDateTime getCommentCreateDateTime() {
+        return commentCreateDateTime;
+    }
+
+    public int getCommentLength() {
+        return commentLength;
+    }
+
     public String toString() {
-        return this.comment + " left at " + this.commentCreateDateTime + " | the length of the commet is " + this.commentLength;
+        return this.comment + " left at " + this.commentCreateDateTime + " | the length of the commet is "
+                + this.commentLength;
     }
 }

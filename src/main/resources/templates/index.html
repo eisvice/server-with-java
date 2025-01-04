@@ -2,32 +2,59 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-  <head>
-    <title>My main page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- <link rel="stylesheet" type="text/css" media="all"  -->
-          <!-- href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" /> -->
-  </head>
+<head>
+  <title>My main page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css" th:href="@{/css/index.css}" />
+  <script type="text/javascript" th:src="@{/js/index.js}" defer></script>
+</head>
 
-  <body>
-  
-    <p th:text="|Hello and ${message}|"></p>
-  
+<body>
+
+  <div>
+    <h2 class="hello-header" th:text="|Hello and ${message}|"></h2>
+  </div>
+
+  <div>
     <form action="#" th:action="@{/comments}" th:object="${commentForm}" method="post">
-        <label for="comment-id">Add your comment</label>
-        <input id="comment-id" name="commentText" th:field="*{comment}" placeholder="Enter new comment" type="text"/>
-        <input type="submit" value="submit"/>
+      <label for="comment-id">Add your comment</label>
+      <input id="comment-id" name="commentText" th:field="*{comment}" placeholder="Enter new comment" type="text" />
+      <input type="submit" value="submit" />
     </form>
+  </div>
 
-    <div>
-        <h2>Comments:</h2>
-        <div th:if="${#lists.size(comments)} == 0">
-            <p>No comments... yet</p>
-        </div>
-        <div th:each="comment: ${comments.getComments}">
-            <p th:text="${comment}"></p>
-        </div>
+  <div id="table-div">
+
+    <h2>Comments:</h2>
+
+    <div th:if="${#lists.size(comments)} == 0">
+      <p>No comments... yet</p>
     </div>
-  </body>
+
+    <table>
+      <!-- Table header -->
+      <thead>
+        <tr>
+          <th:block th:each="heading : ${comments.get(0).names()}">
+            <th th:text="${heading}"></th>
+          </th:block>
+        </tr>
+      </thead>
+      <!-- Table body -->
+      <tbody>
+        <tr th:each="item : ${comments}">
+          <th:block th:each="name : ${item.names()}">
+            <td th:text="${item.get(name)}"></td>
+          </th:block>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div id="game-div">
+    <div id="moving-symbol"></div>
+  </div>
+</body>
 
 </html>
