@@ -1,4 +1,10 @@
+import { setupTableListeners } from "tablesBehavior";
+let selectedRows = setupTableListeners();
+console.log(selectedRows);
+
 checkJsConnectivity();
+console.log("index js loaded")
+
 const gameDiv = expandGameDiv();
 moveChar();
 
@@ -14,7 +20,7 @@ function expandGameDiv() {
     let heightDivSum = allDivs.filter((div) => div != gameDiv)
         .reduce((sum, div) => sum + div.offsetHeight, 0);
 
-    gameDivStyleProps = window.getComputedStyle(gameDiv);
+    let gameDivStyleProps = window.getComputedStyle(gameDiv);
     let gameDivMargins = parseFloat(gameDivStyleProps.marginTop) + parseFloat(gameDivStyleProps.marginBottom);
     console.log(heightDivSum);
 
@@ -28,5 +34,19 @@ function expandGameDiv() {
 function moveChar() {
     const gameP = gameDiv.querySelector("#moving-symbol");
     gameP.innerHTML = 'k';
-    const movingCharInterval = setInterval(() => { gameP.innerHTML = '&nbsp;' + gameP.innerHTML }, 500);
+    const pipka = "pipka-shmipka";
+    var i = pipka.length - 1;
+
+    const movingCharInterval = setInterval(() => {
+        const spaceCount = gameP.innerHTML.split('&nbsp;').length - 1;
+
+        if ((gameP.innerHTML.split('&nbsp;').length - 1) % 5 === 0 && spaceCount > 0 && i >= 0) {
+            gameP.innerHTML = pipka.charAt(i) + gameP.innerHTML;
+            i--;
+        } else {
+            i = pipka.length - 1;
+            gameP.innerHTML = '&nbsp;' + gameP.innerHTML;
+        }
+
+    }, 200);
 }

@@ -6,7 +6,14 @@
   <title>My main page</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css" th:href="@{/css/index.css}" />
-  <script type="text/javascript" th:src="@{/js/index.js}" defer></script>
+  <script type="importmap" src="../static/js/importmap.json"></script>
+  <script type="importmap">
+    {
+        "imports": {
+            "tablesBehavior": "/js/tables/tablesBehavior.js"
+        }
+    }
+  </script>
 </head>
 
 <body>
@@ -31,20 +38,20 @@
       <p>No comments... yet</p>
     </div>
 
-    <table>
+    <table id="comment-table">
       <!-- Table header -->
       <thead>
-        <tr>
+        <tr class="table-header">
           <th:block th:each="heading : ${comments.get(0).names()}">
-            <th th:text="${heading}"></th>
+            <th th:if="${heading} != 'ID'" th:text="${heading}"></th>
           </th:block>
         </tr>
       </thead>
       <!-- Table body -->
       <tbody>
-        <tr th:each="item : ${comments}">
+        <tr class="table-content" th:each="item : ${comments}" th:attr="data-el-id=${item.get('ID')}">
           <th:block th:each="name : ${item.names()}">
-            <td th:text="${item.get(name)}"></td>
+            <td th:if="${name} != 'ID'" th:text="${item.get(name)}"></td>
           </th:block>
         </tr>
       </tbody>
@@ -55,6 +62,8 @@
   <div id="game-div">
     <div id="moving-symbol"></div>
   </div>
+
+  <script type="module" th:src="@{/js/index.js}"></script>
 </body>
 
 </html>

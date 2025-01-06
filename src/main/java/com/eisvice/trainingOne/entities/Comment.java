@@ -3,6 +3,7 @@ package com.eisvice.trainingOne.entities;
 import java.time.LocalDateTime;
 
 public class Comment {
+    private int id;
     private LocalDateTime commentCreateDateTime;
     private String comment;
     private int commentLength;
@@ -11,10 +12,11 @@ public class Comment {
         this.commentCreateDateTime = LocalDateTime.now();
     }
 
-    public Comment(String comment) {
+    public Comment(String comment, int id) {
         this.commentCreateDateTime = LocalDateTime.now();
         this.comment = comment;
         this.commentLength = comment.length();
+        this.id = id;
     }
 
     public void addComment(String comment) {
@@ -31,8 +33,20 @@ public class Comment {
         this.comment = comment;
     }
 
+    public void setCommentLength(int commentLength) {
+        this.commentLength = commentLength;
+    }
+
     public LocalDateTime getCommentCreateDateTime() {
         return commentCreateDateTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCommentLength() {

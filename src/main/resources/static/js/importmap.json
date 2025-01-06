@@ -1,0 +1,5 @@
+{
+    "imports": {
+        "tablesBehavior": "/js/tables/tablesBehavior.js"
+    }
+}

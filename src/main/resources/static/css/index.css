@@ -11,6 +11,7 @@ h2.hello-header {
 }
 
 #table-div {
+    margin-left: 25%;
     width: 50%;
 }
 
@@ -27,6 +28,25 @@ td {
 
 #table-div table td {
     padding-left: 1%;
+}
+
+table tr.table-content:hover {
+    background-color: aqua;
+    cursor: pointer;
+}
+
+table tr.table-content.selected:hover {
+    background-color: crimson;
+    cursor: pointer;
+}
+
+table tr.table-content:active {
+    background-color: brown;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: brown;
 }
 
 #game-div {
